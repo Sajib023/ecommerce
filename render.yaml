@@ -29,12 +29,6 @@ services:
         destination: https://ecommerce-backend.onrender.com/api/:path*
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          name: ecommerce-backend
-          envVarKey: RENDER_EXTERNAL_URL
-          interpolate: true
+        value: https://ecommerce-backend.onrender.com
       - key: NEXT_PUBLIC_SITE_URL
-        fromService:
-          name: ecommerce-frontend
-          envVarKey: RENDER_EXTERNAL_URL
-          interpolate: true
+        value: https://ecommerce-frontend.onrender.com
