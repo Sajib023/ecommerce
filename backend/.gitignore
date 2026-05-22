@@ -1,0 +1,45 @@
+# Ecommerce Shop - Backend
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.env
+*.egg-info/
+dist/
+build/
+*.db
+*.db-journal
+
+# Python
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Virtual environments
+.env
+.env.local
+.venv
+
+# Node modules (for any future node scripts)
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (user-generated content)
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.pdf
