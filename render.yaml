@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: ecommerce-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: BKASH_PERSONAL_NUMBER
+        sync: false
+      - key: DELIVERY_FEE_INSIDE_DHAKA
+        value: 80
+      - key: DELIVERY_FEE_OUTSIDE_DHAKA
+        value: 150
+      - key: PORT
+        value: 8000
+    healthCheckPath: /docs
+
+  - type: web
+    name: ecommerce-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/.next
+    routes:
+      - type: rewrite
+        source: /api/:path*
+        destination: https://ecommerce-backend.onrender.com/api/:path*
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          name: ecommerce-backend
+          envVarKey: RENDER_EXTERNAL_URL
+          interpolate: true
+      - key: NEXT_PUBLIC_SITE_URL
+        fromService:
+          name: ecommerce-frontend
+          envVarKey: RENDER_EXTERNAL_URL
+          interpolate: true
